@@ -1,0 +1,47 @@
+template(name='search')
+
+	.ui-padded
+
+		h2.ui-mgb 搜索结果
+
+		table
+			thead
+				tr
+					th(width='100') 代理人
+					th(width='200') 学校
+					th(width='80') 职位
+					th(width='100') 推荐人
+					th(width='100') 推荐人数
+					th(width='160') 手机号
+					th(width='160') 电话号
+					th(width='160') 品类
+					th(width='80') 颜色
+					th(width='160') 产品总价
+					th(width='80') 分期数
+					th(width='160') 分期金额
+					th(width='160') 下单系统
+					th(width='160') 下单日期
+			tbody
+				each getSearchResults
+					tr
+						td
+							a(href='{{pathFor route="viewClient"}}') {{displayName}}
+						td {{school}}
+						td(style='cursor: pointer;')
+							a(onclick='Router.go("search", { keyword: "{{position}}" });') {{position}}
+						if referee.displayName
+							td {{referee.displayName}}
+						else
+							td {{referee}}
+						td {{stats.referees}}
+						td {{mobile}}
+						td {{tel}}
+						td(style='cursor: pointer;')
+							a(onclick='Router.go("search", { keyword: "{{category}}" });') {{category}}
+						td {{colour}}
+						td {{total}}
+						td {{finish}} / {{instalment}}
+						td {{amount}}
+						td(style='cursor: pointer;')
+							a(onclick='Router.go("search", { keyword: "{{type}}" });') {{type}}
+						td {{formattedCreatedAt}}

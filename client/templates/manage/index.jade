@@ -1,0 +1,53 @@
+template(name='manage')
+
+	.ui-padded-sm
+
+		.ui-flex-row
+
+			.ui-flex-column.ui-flex-1x.ui-padded-sm
+
+				h2.ui-mgb
+					a(href='{{pathFor route="managePlaces"}}') 地区
+					a.ui-text-sm.ui-text-mute(href='{{pathFor route="managePlaces"}}') 地区管理
+					a.ui-text-sm.ui-text-mute(href='{{pathFor route="manageNewPlace"}}') 添加地区
+
+				table
+					thead
+						tr
+							th 地区名称
+							th 代理人数
+							th 开拓时间
+					tbody
+						each places 10
+							tr
+								td {{title}}
+								td {{stats.clients}}
+								td {{formattedCreatedAt}}
+
+			.ui-flex-column.ui-flex-1x.ui-padded-sm
+
+				h2.ui-mgb 用户
+					a.ui-text-sm.ui-text-mute(href='{{pathFor route="manageNewUser"}}') 添加用户
+
+				table
+					thead
+						tr
+							th 用户名
+							th 姓名
+							th 地区
+							th 手机
+							th 角色
+							th 备注
+					tbody
+						each users 10
+							tr
+								td {{username}}
+								td {{displayName}}
+								td {{place.title}}
+								td
+									if isAdmin
+										| 管理员
+									else
+										| 用户
+								td {{profile.mobile}}
+								td {{profile.desc}}

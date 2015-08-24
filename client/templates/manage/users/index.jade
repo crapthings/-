@@ -1,0 +1,30 @@
+template(name='manageUsers')
+
+	.ui-padded
+
+		.ui-mgb-md
+			a(href='{{pathFor route="manageNewUser"}}') 添加用户
+
+		.ui-mgb-md
+
+			h2.ui-mgb 管理员
+
+			table
+
+				+usersTableHead
+
+				tbody
+					each getAdminUsers
+						+usersTableRow
+
+		.ui-mgb-md
+
+			h2.ui-mgb 用户
+
+			table
+
+				+usersTableHead
+
+				tbody
+					each getNormalUsers
+						+usersTableRow

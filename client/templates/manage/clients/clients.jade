@@ -1,0 +1,33 @@
+template(name='manageClients')
+
+	.ui-padded-sm
+
+		table
+			thead
+				tr
+					th 代理人
+					th 地区
+					th 学校
+					th 职位
+					th 推荐人
+					th 品类
+					th 颜色
+					th 产品总价
+					th 分期数
+					th 分期金额
+					th 日期
+			tbody
+				each clients
+					tr
+						td
+							a(href='{{pathFor route="manageUpdateClient"}}') {{displayName}}
+						td {{place.title}}
+						td {{school}}
+						td {{position}}
+						td {{referee}}
+						td {{category}}
+						td {{colour}}
+						td {{total}}
+						td {{instalment}}
+						td {{amount}}
+						td {{formattedCreatedAt}}

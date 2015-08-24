@@ -1,0 +1,29 @@
+template(name='placeForm')
+
+	form.ui-flex-column#placeForm
+
+		.ui-flex-row.ui-mgb
+
+			label.ui-flex-1x.ui-padded-sm 地区名
+				input(type='text' name='title' value='{{title}}' placeholder='输入地区名称')
+
+			label.ui-flex-1x.ui-padded-sm 地址
+				input(type='text' name='address' value='{{address}}' placeholder='办公所在地址' required)
+
+			label.ui-flex-1x.ui-padded-sm 办公电话
+				input(type='text' name='tel' value='{{tel}}' placeholder='办公电话' required)
+
+			label.ui-flex-1x.ui-padded-sm 负责人
+				input(type='text' name='leader' value='{{leader}}' placeholder='输入负责人姓名')
+
+			label.ui-flex-1x.ui-padded-sm 负责人联系方式
+				input(type='text' name='contact' value='{{contact}}' placeholder='负责人联系方式' required)
+
+		.ui-flex-row.ui-mgb
+
+			label.ui-flex-1x.ui-padded-sm
+				.ui-mgb 备注
+				textarea(name='desc' rows='1' placeholder='备注信息') {{desc}}
+
+		.ui-flex-1x.ui-padded-sm
+			input(type='submit' value='提交')

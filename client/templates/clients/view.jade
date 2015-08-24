@@ -1,0 +1,113 @@
+template(name='viewClient')
+
+	with client
+
+		.ui-padded-sm
+
+			.ui-padded-sm
+
+				.ui-flex-row
+
+					h2.ui-flex-1x.ui-mgb 代理人信息
+
+					.ui-padded-sm
+						a(href='{{pathFor route="manageUpdateClient"}}').ui-mgr
+							i.fa.fa-edit.fa-2x
+
+						a(href='#').cancel-user
+							i.fa.fa-ban.fa-2x
+							span 问题
+
+				+clientDetail
+
+			.ui-flex-row
+
+				.ui-flex-1x.ui-padded-sm
+
+					h2.ui-mgb 分期信息
+
+					table
+						thead
+							tr
+								th(width='50') 期数
+								th 日期
+								th 状态
+								th 备注
+								th 操作
+						tbody
+							each instalmentsByClientId _id
+								tr
+									td {{stage}}
+									td.ui-flex-column
+										span(style='color: green;') {{formattedStartAt}}
+										span(style='color: red;') {{formattedEndAt}}
+									td
+										unless completed
+											| 未完成
+										else
+											| 已结算
+									td {{result}}
+									td
+										a.attach-comment(href='#') 处理
+
+				.ui-flex-column.ui-flex-1x.ui-padded-sm
+
+					h2.ui-mgb 未抵消的下级代理
+
+					table.ui-mgb
+						thead
+							tr
+								th 姓名
+								th 下单日期
+								th 操作
+						tbody
+							each getUnbalancedOutReferralsById _id
+								tr
+									td
+										if cancel
+											span(style='color: red;') {{displayName}}
+										else
+											span {{displayName}}
+									td {{formattedCreatedAt}}
+									td
+										a.balancedOut(href='#') 抵消
+
+					h2.ui-mgb 下级代理
+
+					table
+						thead
+							tr
+								th 姓名
+								th 下单日期
+								th 抵消日期
+
+						tbody
+							each getReferralsById _id
+								tr
+									td
+										if cancel
+											span(style='color: red;') {{displayName}}
+										else
+											span {{displayName}}
+									td {{formattedCreatedAt}}
+									td {{formattedDate balancedOutAt 'YYYY.MM.DD'}}
+
+				.ui-flex-1x.ui-padded-sm
+
+					if cancel
+
+						h2.ui-mgb 处理情况
+
+						.ui-mgb(style='color: red;') {{result}}
+
+					h2.ui-mgb 备注列表
+
+					.ui-mgb
+
+						+commentForm
+
+					each getCommentsByParentId _id
+
+						.ui-flex-column.ui-mgb
+							span {{formattedCreatedAt}}
+							p {{content}}

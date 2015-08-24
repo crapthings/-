@@ -1,0 +1,28 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-platform
+insecure
+coffeescript
+mquandalle:jade
+mquandalle:stylus
+iron:router
+accounts-password
+msavin:mongol
+matb33:collection-hooks
+dburles:collection-helpers
+meteorhacks:npm
+
+
+npm-container
+fortawesome:fontawesome
+multiply:iron-router-progress
+matteodem:easy-search
+maximum:server-transform
+meteorhacks:fast-render
+ccorcos:subs-cache
+msavin:jetsetter
+meteorhacks:kadira

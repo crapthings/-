@@ -1,0 +1,53 @@
+template(name='ui_header')
+
+	.ui-flex-row.ui-flex-center--child.ui-header
+
+		a.ui-flex-column(href='{{pathFor route="home"}}')
+			h2.logo 易安业务管理系统
+
+		a.ui-flex-column(href='{{pathFor route="home"}}')
+			i.fa.fa-sitemap.fa-2x.ui-mgb-sm
+			span 代理
+
+		a.ui-flex-column(href='{{pathFor route="instalmentsByDate"}}')
+			i.fa.fa-warning.fa-2x.ui-mgb-sm
+			span 还款提醒
+
+		a.ui-flex-column(href='{{pathFor route="getCancelClients"}}')
+			i.fa.fa-ban.fa-2x.ui-mgb-sm
+			span 问题人员
+
+		a.ui-flex-column(href='{{pathFor route="newClient"}}')
+			i.fa.fa-plus-circle.fa-2x.ui-mgb-sm
+			span 新增
+
+		if isAdmin
+
+			a.ui-flex-column(href='{{pathFor route="managePlaces"}}')
+				i.fa.fa-map-marker.fa-2x.ui-mgb-sm
+				span 地区
+
+
+			a.ui-flex-column(href='{{pathFor route="manageUsers"}}')
+				i.fa.fa-users.fa-2x.ui-mgb-sm
+				span 用户
+
+			a.ui-flex-column(href='{{pathFor route="manage"}}')
+				i.fa.fa-cogs.fa-2x.ui-mgb-sm
+				span 系统
+
+		a.ui-flex-column(href='#' onclick='Meteor.signout();')
+			i.fa.fa-sign-out.fa-2x.ui-mgb-sm
+			span 退出
+
+		a.ui-flex-column(href='#')
+			h3 {{currentUser.profile.displayName}}
+			span {{currentUser.username}}
+
+		.ui-flex-row.ui-flex-1x(style='justify-content: flex-start;')
+			input(type='search' placeholder='搜索').action-search
+
+		//- .ui-flex-row.ui-flex-1x(style='justify-content: flex-start;')
+			+esInput index="clients" placeholder="Search..."
+
+		.ui-flex-1x

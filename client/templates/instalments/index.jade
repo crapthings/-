@@ -1,0 +1,44 @@
+template(name='instalmentsByDate')
+
+	.ui-padded
+
+		.ui-flex-row
+
+			h2.ui-flex-1x.ui-mgb 还款提醒
+			.ui-padded-sm
+				a.ui-mgr(href='#').prev-day 上一天
+				a.ui-mgr(href='#' onclick='Session.set("currentDate", moment(new Date()).startOf("day").toDate());') {{displayHelperDate}}
+				a.ui-mgr(href='#').next-day 下一天
+				input(type='date' placeholder='输入日期').date-picker
+		table
+			thead
+				tr
+					th(width='100') 代理人
+					th(width='200') 学校
+					th(width='80') 职位
+					th(width='80') 手机号
+					//- th(width='100') 下线代理人
+					th(width='80') 第几期
+					th(width='80') 期数
+					th(width='80') 还款金额
+					th(width='100') 还款日期
+					th(width='100') 操作
+			tbody
+				each getLastThreeDays getDate
+					+instalmentsByDateItem
+
+
+template(name='instalmentsByDateItem')
+	tr
+		td(style='cursor: pointer;')
+			a(onclick='Router.go("viewClient", { _id: "{{client._id}}" });') {{client.displayName}}
+		td {{client.school}}
+		td {{client.position}}
+		td {{client.mobile}}
+		//- td {{referee.displayName}}
+		td {{stage}}
+		td {{client.instalment}}
+		td {{client.amount}}
+		td {{formattedEndAt}}
+		td
+			a(href='#').attach-comment 处理

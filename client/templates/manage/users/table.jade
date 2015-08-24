@@ -1,0 +1,32 @@
+template(name='usersTableHead')
+
+	thead
+		tr
+			th(width='200') 用户名
+			th(width='200') 姓名
+			th(width='200') 地区
+			th(width='200') 权限
+			th(width='200') 手机
+			th(width='200') 创建时间
+			th 备注
+			if isAdmin
+				th 管理
+
+template(name='usersTableRow')
+
+	tr
+		td
+			a(href='{{pathFor route="manageUpdateUser"}}') {{username}}
+		td {{displayName}}
+		td {{place.title}}
+		td
+			if profile.isAdmin
+				| 管理员
+			else
+				| 用户
+		td {{profile.mobile}}
+		td {{formattedCreatedAt}}
+		td {{profile.desc}}
+		if isAdmin
+			td
+				a.remove-user(href='#') 删除

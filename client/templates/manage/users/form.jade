@@ -1,0 +1,74 @@
+template(name='userForm')
+
+	form.ui-flex-column#userForm
+
+		.ui-flex-row.ui-mgb
+
+			if _id
+
+				label.ui-flex-1x.ui-padded-sm 用户名
+					input(type='text' name='username' value='{{username}}' placeholder='登陆易安系统的用户名' disabled)
+
+				label.ui-flex-1x.ui-padded-sm 密码
+					input(type='password' name='password' value='{{password}}' placeholder='请输入一个安全的密码')
+
+			else
+
+				label.ui-flex-1x.ui-padded-sm 用户名
+					input(type='text' name='username' value='{{username}}' placeholder='登陆易安系统的用户名' required)
+
+				label.ui-flex-1x.ui-padded-sm 密码
+					input(type='password' name='password' value='{{password}}' placeholder='请输入一个安全的密码' required)
+
+		.ui-flex-row.ui-mgb
+
+			.ui-flex-column.ui-flex-1x.ui-padded-sm.ui-label 权限
+				.ui-flex-row
+
+					if _id
+
+						label.ui-flex-1x.ui-mgr.ui-padded-sm
+							input(type='radio' name='profile.isAdmin' value='true' required checked='{{getRadio profile.isAdmin true}}')
+							| 管理员
+
+						label.ui-flex-1x.ui-padded-sm
+							input(type='radio' name='profile.isAdmin' value='false' required checked='{{getRadio profile.isAdmin false}}')
+							| 用户
+
+					else
+
+						label.ui-flex-1x.ui-mgr.ui-padded-sm
+							input(type='radio' name='profile.isAdmin' value='true' required)
+							| 管理员
+
+						label.ui-flex-1x.ui-padded-sm
+							input(type='radio' name='profile.isAdmin' value='false' required checked)
+							| 用户
+
+			label.ui-flex-1x.ui-padded-sm 姓名
+				input(type='text' name='profile.displayName' value='{{profile.displayName}}' placeholder='姓名' required)
+
+			label.ui-flex-1x.ui-padded-sm 手机
+				input(type='text' name='profile.mobile' value='{{profile.mobile}}' placeholder='手机号码' required)
+
+		unless _id
+
+			.ui-flex-row.ui-mgb
+
+				.ui-flex-column.ui-flex-1x.ui-padded-sm.ui-label 地区
+					.ui-flex-row
+
+						each places
+
+							label.ui-flex-1x.ui-mgr.ui-padded-sm
+								input(type='radio' name='placeId' value='{{_id}}' required checked='{{getRadio ../placeId _id}}')
+								| {{title}}
+
+		.ui-flex-row.ui-mgb
+
+			label.ui-flex-1x.ui-padded-sm
+				.ui-mgb 备注
+				textarea(name='profile.desc' rows='1' placeholder='备注信息') {{profile.desc}}
+
+		.ui-flex-1x.ui-padded-sm
+			input(type='submit' value='提交')

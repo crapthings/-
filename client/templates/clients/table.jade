@@ -1,0 +1,95 @@
+template(name='clientsSimpleTable')
+
+	table
+		thead
+			tr
+				th(width='100') 代理人
+				th(width='200') 学校
+				th(width='80') 职位
+				th(width='100') 推荐人
+				th(width='100') 推荐人数
+				th(width='160') 手机号
+				th(width='160') 品类
+				th(width='80') 颜色
+				th(width='160') 产品总价
+				th(width='80') 分期数
+				th(width='160') 分期金额
+				th(width='160') 下单系统
+				th(width='160') 下单日期
+		tbody
+			each getLatestClients
+				tr
+					td
+						a(href='{{pathFor route="viewClient"}}')
+							if cancel
+								span(style='color: red;' title='{{result}}') {{displayName}}
+							else
+								span {{displayName}}
+					td {{school}}
+					td(style='cursor: pointer;')
+						a(onclick='Router.go("search", { keyword: "{{position}}" });') {{position}}
+					if referee.displayName
+						td {{referee.displayName}}
+					else
+						td {{referee}}
+					td {{stats.referees}}
+					td {{mobile}}
+					td(style='cursor: pointer;')
+						a(onclick='Router.go("search", { keyword: "{{category}}" });') {{category}}
+					td {{colour}}
+					td {{total}}
+					td {{finish}} / {{instalment}}
+					td {{amount}}
+					td(style='cursor: pointer;')
+						a(onclick='Router.go("search", { keyword: "{{type}}" });') {{type}}
+					td {{formattedCreatedAt}}
+
+template(name='clientsDetailTable')
+
+	table
+		thead
+			tr
+				th 姓名
+				th 学校
+				th 职位
+				th 推荐人
+				th 银行卡
+				th 开户行
+				th 支付宝账号
+				th 手机号
+				th 电话号
+				th 微信
+				th QQ
+				th 登陆账号
+				th 登录密码
+				th 品类
+				th 颜色
+				th 产品总价
+				th 分期数
+				th 分期金额
+				th 日期
+				th 备注
+				th 管理
+		tbody
+			each latestClients
+				tr
+					td {{truncate displayName 4}}
+					td(title='{{school}}') {{truncate school 12}}
+					td {{position}}
+					td {{referee}}
+					td {{account}}
+					td {{bank}}
+					td {{alipay}}
+					td {{mobile}}
+					td {{tel}}
+					td {{wechat}}
+					td {{qq}}
+					td {{login}}
+					td {{password}}
+					td {{category}}
+					td {{colour}}
+					td {{total}}
+					td {{instalment}}
+					td {{amount}}
+					td {{formattedCreatedAt}}
+					td {{desc}}

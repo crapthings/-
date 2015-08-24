@@ -1,0 +1,114 @@
+template(name='clientForm')
+
+	form.ui-flex-column#clientForm
+
+		.ui-flex-row.ui-mgb
+
+			label.ui-flex-1x.ui-padded-sm 姓名
+				input(type='text' name='displayName' value='{{displayName}}' placeholder='输入代理人的姓名')
+
+			label.ui-flex-1x.ui-padded-sm 学校
+				input(type='text' name='school' value='{{school}}' placeholder='输入代理人的学校名称')
+
+			.ui-flex-column.ui-flex-1x.ui-padded-sm.ui-label 职位
+				.ui-flex-row
+
+					label.ui-flex-1x.ui-mgr.ui-padded-sm
+						input(type='radio' name='position' value='区代' required checked='{{getRadio ../position "区代"}}')
+						| 区代
+
+					label.ui-flex-1x.ui-mgr.ui-padded-sm
+						input(type='radio' name='position' value='校代' required checked='{{getRadio ../position "校代"}}')
+						| 校代
+
+					label.ui-flex-1x.ui-mgr.ui-padded-sm
+						input(type='radio' name='position' value='子代' required checked='{{getRadio ../position "子代"}}')
+						| 子代
+
+			//- label.ui-flex-1x.ui-padded-sm 职位
+				input(type='text' name='position' value='{{position}}' placeholder='输入代理人的职位')
+
+			label.ui-flex-1x.ui-padded-sm 推荐人
+				input#refereesList1(type='text' name='referee' value='{{referee}}' list='refereesList' placeholder='输入代理人的推荐人')
+				datalist#refereesList
+					each findRefereer
+						+refereerItem
+
+		if findRefereer
+			.ui-flex-column.ui-mgb
+					each findRefereer 5
+						.ui-flex-column.ui-padded-sm.ui-label {{displayName}}
+							.ui-flex-row
+								label.ui-flex-1x.ui-mgr.ui-padded-sm
+									input(type='radio' name='refereeId' value='{{_id}}' required checked='{{getRadio ../position "区代"}}')
+									| {{displayName}} {{mobile}} {{tel}}
+
+		.ui-flex-row.ui-mgb
+
+			label.ui-flex-1x.ui-padded-sm 银行卡
+				input(type='text' name='account' value='{{account}}' placeholder='输入代理人的银行卡号')
+
+			label.ui-flex-1x.ui-padded-sm 开户行
+				input(type='text' name='bank' value='{{bank}}' placeholder='输入代理人的银行卡号')
+
+			label.ui-flex-1x.ui-padded-sm 支付宝账号
+				input(type='text' name='alipay' value='{{alipay}}' placeholder='输入代理人的支付宝账号')
+
+		.ui-flex-row.ui-mgb
+
+			label.ui-flex-1x.ui-padded-sm 手机号
+				input(type='text' name='mobile' value='{{mobile}}' placeholder='输入代理人的手机号码')
+
+			label.ui-flex-1x.ui-padded-sm 电话号
+				input(type='text' name='tel' value='{{tel}}' placeholder='输入代理人的电话号码')
+
+			label.ui-flex-1x.ui-padded-sm 微信
+				input(type='text' name='wechat' value='{{wechat}}' placeholder='输入代理人的微信号')
+
+			label.ui-flex-1x.ui-padded-sm QQ
+				input(type='text' name='qq' value='{{qq}}' placeholder='输入代理人的QQ号')
+
+			label.ui-flex-1x.ui-padded-sm 登录账号
+				input(type='text' name='login' value='{{login}}' placeholder='输入三方查询系统的登录账号')
+
+			label.ui-flex-1x.ui-padded-sm 登录密码
+				input(type='text' name='password' value='{{password}}' placeholder='输入三方查询系统的登录密码')
+
+		.ui-flex-row.ui-mgb
+
+			label.ui-flex-1x.ui-padded-sm 品类
+				input(type='text' name='category' value='{{category}}' placeholder='输入产品的类型')
+
+			label.ui-flex-1x.ui-padded-sm 颜色
+				input(type='text' name='colour' value='{{colour}}' placeholder='输入产品的颜色')
+
+			label.ui-flex-1x.ui-padded-sm 产品总价
+				input(type='text' name='total' value='{{total}}' placeholder='输入产品的总价')
+
+			label.ui-flex-1x.ui-padded-sm 分期数
+				input(type='text' name='instalment' value='{{instalment}}' placeholder='输入分期数')
+
+			label.ui-flex-1x.ui-padded-sm 分期金额
+				input(type='text' name='amount' value='{{amount}}' placeholder='输入每期还款额')
+
+		.ui-flex-row.ui-mgb
+
+			label.ui-flex-1x.ui-padded-sm 下单系统
+				input(type='text' name='type' value='{{type}}' placeholder='输入下单系统')
+
+			label.ui-flex-1x.ui-padded-sm 日期
+				input(type='text' name='createdAt' value='{{createdAt}}' placeholder='输入起始日期')
+
+		.ui-flex-row.ui-mgb
+
+			label.ui-flex-1x.ui-padded-sm
+				.ui-mgb 备注
+				textarea(name='desc' rows='1' placeholder='备注信息') {{desc}}
+
+		.ui-flex-row.ui-mgb
+
+			.ui-flex-1x.ui-padded-sm
+				input(type='submit' value='提交')
+
+template(name='refereerItem')
+	option(value='{{displayName}}' label='{{displayName}} {{mobile}} {{tel}}')

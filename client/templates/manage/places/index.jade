@@ -1,0 +1,39 @@
+template(name='managePlaces')
+
+	.ui-padded
+
+		.ui-mgb-md
+
+			h2.ui-mgb 当月增长
+
+			canvas#thisMonthGrow(style='width: 100%; height: 400px;')
+
+		.ui-mgb-md
+
+			h2.ui-mgb 地区表单
+				a.ui-text-sm.ui-text-mute(href='{{pathFor route="manageNewPlace"}}') 添加地区
+
+			table
+				thead
+					tr
+						th 地区名
+						th 代理人数量
+						th 用户数量
+						th 负责人
+						th 负责人联系方式
+						th 办公电话
+						th 地址
+						th 备注
+
+				tbody
+					each places
+						tr
+							td
+								a(href='{{pathFor route="manageUpdatePlace"}}') {{title}}
+							td {{stats.clients}}
+							td {{stats.users}}
+							td {{leader}}
+							td {{contact}}
+							td {{tel}}
+							td {{address}}
+							td {{desc}}

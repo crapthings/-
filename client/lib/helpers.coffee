@@ -16,7 +16,7 @@ helper 'truncate', (string, length) -> (string).truncate length
 # important helpers
 
 helper 'isAdmin', ->
-	Meteor.user().profile?.isAdmin
+	Meteor.user()?.profile?.isAdmin
 
 helper 'getCurrentDate', ->
 	currentDate = Session.get 'currentDate'

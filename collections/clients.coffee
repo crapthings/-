@@ -49,7 +49,7 @@ Clients.after.insert (userId, client) ->
 
 Clients.after.update (userId, client, fieldNames, modifier, options) ->
 	if not @previous?.cancel and client.cancel
-		Instalments.update { clientId: @client._id },
+		Instalments.update { clientId: @client?._id },
 			$set:
 				cancel: true
 ,
@@ -231,7 +231,7 @@ if Meteor.isServer
 					createdAt: -1
 		else
 			user = Meteor.users.findOne @userId
-			Clients.find { placeId: user.placeId, cancel: true },
+			Clients.find { placeId: user?.placeId, cancel: true },
 				sort:
 					createdAt: -1
 
